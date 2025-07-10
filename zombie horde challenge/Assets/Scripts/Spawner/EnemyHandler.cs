@@ -38,11 +38,21 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (m_Player == null) return;
 
         Vector3 direction = (m_Player.transform.position - transform.position).normalized;
         transform.position += direction * m_EnemyData.speed * Time.deltaTime;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.collider.TryGetComponent(out PlayerHealth PH))
+        {
+            EnemyDead?.Invoke();
+            PH.TakeDamage(m_EnemyData.damage);
+            Destroy(gameObject);
+        }
     }
 }

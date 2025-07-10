@@ -27,20 +27,20 @@ public class WaveDisplay : MonoBehaviour
     {
         switch(currentWave)
         {
-            case 0: m_CurrentWave.text += " Easy";
+            case 0: m_CurrentWave.text = "Current Wave: Easy";
                 break;
 
-            case 1: m_CurrentWave.text += " Medium";
+            case 1: m_CurrentWave.text = "Current Wave: Medium";
                 break;
 
-            case 2: m_CurrentWave.text += " Hard";
+            case 2: m_CurrentWave.text = "Current Wave: Hard";
                 break;
         }
     }
 
     private void UpdateWaveLevel(int waveLevel)
     {
-        m_WaveLevel.text += " " + waveLevel.ToString();
+        m_WaveLevel.text = "Wave Level: " + waveLevel.ToString();
     }
 
     private void UpdateEnemiesRemain(int enemiesLeft)

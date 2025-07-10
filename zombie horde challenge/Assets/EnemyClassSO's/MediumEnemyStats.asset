@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: MediumEnemyStats
   m_EditorClassIdentifier: 
   Health: 100
-  speed: 6
+  speed: 8
   damage: 30
   color: {r: 1, g: 0.63041866, b: 0, a: 1}

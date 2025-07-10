@@ -14,7 +14,7 @@ public class EnemySpawnerSystem : MonoBehaviour
     public Action<int> UpdateEnemiesLeft;
 
     private int m_CurrentWave = 0;
-    private int m_waveLevel = 1;
+    private int m_WaveLevel = 1;
 
     private int m_EnemiesRemain;
 
@@ -30,27 +30,27 @@ public class EnemySpawnerSystem : MonoBehaviour
 
     private IEnumerator WaveSpawner()
     {
-        m_EnemiesRemain = m_WaveStats[m_CurrentWave].TotalEnemyCount;
+        m_EnemiesRemain = m_WaveStats[m_CurrentWave].TotalEnemyCount * m_WaveLevel;
 
         UpdateWave?.Invoke(m_CurrentWave);
-        UpdateWaveLevel?.Invoke(m_waveLevel);
+        UpdateWaveLevel?.Invoke(m_WaveLevel);
         UpdateEnemiesLeft?.Invoke(m_EnemiesRemain);
 
-        for (int i = 0; i < m_WaveStats[m_CurrentWave].EasyEnemyCount * m_waveLevel; i++)
+        for (int i = 0; i < m_WaveStats[m_CurrentWave].EasyEnemyCount * m_WaveLevel; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
             SpawnEnemy(0);
         }
 
-        for (int i = 0; i < m_WaveStats[m_CurrentWave].MediumEnemyCount * m_waveLevel; i++)
+        for (int i = 0; i < m_WaveStats[m_CurrentWave].MediumEnemyCount * m_WaveLevel; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
             SpawnEnemy(1);
         }
 
-        for (int i = 0; i < m_WaveStats[m_CurrentWave].HardEnemyCount * m_waveLevel; i++)
+        for (int i = 0; i < m_WaveStats[m_CurrentWave].HardEnemyCount * m_WaveLevel; i++)
         {
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.25f);
             SpawnEnemy(2);
         }
     }
@@ -68,7 +68,19 @@ public class EnemySpawnerSystem : MonoBehaviour
     {
         m_EnemiesRemain--;
         UpdateEnemiesLeft?.Invoke(m_EnemiesRemain);
-    }
 
-    //keep reference to active enemies to be able to unbind on disable
+        if(m_EnemiesRemain == 0)
+        {
+            m_WaveLevel++;
+
+            if(m_WaveLevel == 10)
+            {
+                Debug.Log("next wave");
+            }
+            else
+            {
+                StartCoroutine(WaveSpawner());
+            }
+        }
+    }
 }
