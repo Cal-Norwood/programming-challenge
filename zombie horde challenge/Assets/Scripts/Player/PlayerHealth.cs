@@ -1,8 +1,10 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] private float m_MaxHealth;
+    [SerializeField] private Image m_ProgressBar;
     private float m_CurrentHealth;
 
     private void Awake()
@@ -13,6 +15,7 @@ public class PlayerHealth : MonoBehaviour
     public void TakeDamage(float damage)
     {
         m_CurrentHealth -= damage;
+        m_ProgressBar.fillAmount = m_CurrentHealth / m_MaxHealth;
 
         if(m_CurrentHealth <= 0)
         {

@@ -4,7 +4,23 @@ public class WeaponHandler : MonoBehaviour
 {
     [SerializeField] private Transform m_WeaponHolder;
     [SerializeField] private WeaponSO[] m_WeaponTypes;
+    [SerializeField] private PlayerLevel m_PL;
     private WeaponBase m_CurrentWeapon;
+
+    private void OnEnable()
+    {
+        m_PL.gunUpgrade += UpgradeGun;
+    }
+
+    private void OnDisable()
+    {
+        m_PL.gunUpgrade -= UpgradeGun;
+    }
+
+    private void UpgradeGun()
+    {
+        EquipWeapon(m_WeaponTypes[1]);
+    }
 
     public void EquipWeapon(WeaponSO weaponSO)
     {

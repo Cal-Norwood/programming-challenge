@@ -11,7 +11,7 @@ public class EnemyHandler : MonoBehaviour
 
     private float m_CurrentHealth;
 
-    public Action EnemyDead;
+    public Action<int, Vector3> EnemyDead;
 
     private void Awake()
     {
@@ -33,7 +33,7 @@ public class EnemyHandler : MonoBehaviour
 
         if(m_CurrentHealth <= 0)
         {
-            EnemyDead?.Invoke();
+            EnemyDead?.Invoke(1, transform.position);
             Destroy(gameObject);
         }
     }
@@ -50,7 +50,7 @@ public class EnemyHandler : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out PlayerHealth PH))
         {
-            EnemyDead?.Invoke();
+            EnemyDead?.Invoke(0, transform.position);
             PH.TakeDamage(m_EnemyData.damage);
             Destroy(gameObject);
         }

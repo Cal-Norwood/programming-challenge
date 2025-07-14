@@ -8,6 +8,7 @@ public class EnemySpawnerSystem : MonoBehaviour
     [SerializeField] private EnemyStatsSO[] m_ES;
     [SerializeField] private WaveStatsSO[] m_WaveStats;
     [SerializeField] private GameObject m_Player;
+    [SerializeField] private GameObject m_Coin;
 
     public Action<int> UpdateWave;
     public Action<int> UpdateWaveLevel;
@@ -64,17 +65,33 @@ public class EnemySpawnerSystem : MonoBehaviour
         EH.EnemyDead += EnemyDead;
     }
 
-    private void EnemyDead()
+    private void EnemyDead(int cause, Vector3 deathPos)
     {
+        //cause = 0: enemy has exploded on player
+        //cause = 1: enemy has ben killed by Player
+
         m_EnemiesRemain--;
         UpdateEnemiesLeft?.Invoke(m_EnemiesRemain);
+
+        if(cause == 1)
+        {
+            int randomNum = UnityEngine.Random.Range(1, 4);
+
+            for(int i = 0; i< randomNum; i++)
+            {
+                Instantiate(m_Coin, deathPos, Quaternion.identity);
+            }
+        }
 
         if(m_EnemiesRemain == 0)
         {
             m_WaveLevel++;
 
-            if(m_WaveLevel == 10)
+            if(m_WaveLevel == 2)
             {
+                m_WaveLevel = 1;
+                m_CurrentWave++;
+                StartCoroutine(WaveSpawner());
                 Debug.Log("next wave");
             }
             else
