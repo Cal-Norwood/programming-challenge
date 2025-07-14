@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 33b05b3ba1d98eb4e968162ef6d08ca9, type: 3}
-  m_Name: Shotgun
+  m_Script: {fileID: 11500000, guid: 92f4e9cb33c12984db1c6314e4060859, type: 3}
+  m_Name: HardEnemy
   m_EditorClassIdentifier: 
-  weaponName: Shotgun
-  type: 1
-  damage: 15
-  fireRate: 0
-  weaponPrefab: {fileID: 7354654556756053649, guid: aca33f870e2e547489ba68e3cb27fda9, type: 3}
+  Health: 150
+  speed: 10
+  damage: 40
+  color: {r: 1, g: 0, b: 0, a: 1}

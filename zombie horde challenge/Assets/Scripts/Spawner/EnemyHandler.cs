@@ -13,6 +13,8 @@ public class EnemyHandler : MonoBehaviour
 
     public Action<int, Vector3> EnemyDead;
 
+    private bool m_IsEnemyDead = false;
+
     private void Awake()
     {
         m_Player = GameObject.Find("Player");
@@ -33,8 +35,12 @@ public class EnemyHandler : MonoBehaviour
 
         if(m_CurrentHealth <= 0)
         {
-            EnemyDead?.Invoke(1, transform.position);
-            Destroy(gameObject);
+            if(!m_IsEnemyDead)
+            {
+                m_IsEnemyDead = true;
+                EnemyDead?.Invoke(1, transform.position);
+                Destroy(gameObject);
+            }
         }
     }
 
@@ -50,9 +56,13 @@ public class EnemyHandler : MonoBehaviour
     {
         if (collision.collider.TryGetComponent(out PlayerHealth PH))
         {
-            EnemyDead?.Invoke(0, transform.position);
-            PH.TakeDamage(m_EnemyData.damage);
-            Destroy(gameObject);
+            if(!m_IsEnemyDead)
+            {
+                m_IsEnemyDead = true;
+                EnemyDead?.Invoke(0, transform.position);
+                PH.TakeDamage(m_EnemyData.damage);
+                Destroy(gameObject);
+            }
         }
     }
 }

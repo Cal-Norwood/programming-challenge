@@ -1949,6 +1949,7 @@ MonoBehaviour:
   m_ES:
   - {fileID: 11400000, guid: 80420cbd4d2adce44826bb4e28c51105, type: 2}
   - {fileID: 11400000, guid: 7c1a80ea43c599442b3d2e8e4e13be9a, type: 2}
+  - {fileID: 11400000, guid: 831f53f06200e524fbb7c1bbffefad1a, type: 2}
   m_WaveStats:
   - {fileID: 11400000, guid: c5555f0cda9dde445bf4fd4fddd6383c, type: 2}
   - {fileID: 11400000, guid: d0a29e8d6c59c0a4eae7b46967333a6b, type: 2}
