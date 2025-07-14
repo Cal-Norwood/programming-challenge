@@ -29,7 +29,7 @@ public class EnemySpawnerSystem : MonoBehaviour
         
     }
 
-    private IEnumerator WaveSpawner()
+    private IEnumerator WaveSpawner() // spawn enemies in a radius from the player based on the stats of th current wave
     {
         m_EnemiesRemain = m_WaveStats[m_CurrentWave].TotalEnemyCount * m_WaveLevel;
 
@@ -56,7 +56,7 @@ public class EnemySpawnerSystem : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(int difficulty)
+    private void SpawnEnemy(int difficulty) // initialize spawned enemy and assign event
     {
         Vector3 randomPos = UnityEngine.Random.insideUnitCircle.normalized * 12;
         GameObject enemy = Instantiate(m_BaseEnemy, (m_Player.transform.position + randomPos), Quaternion.identity);
@@ -65,7 +65,7 @@ public class EnemySpawnerSystem : MonoBehaviour
         EH.EnemyDead += EnemyDead;
     }
 
-    private void EnemyDead(int cause, Vector3 deathPos)
+    private void EnemyDead(int cause, Vector3 deathPos) // notify UI that enemy is dead and keep track to change wave
     {
         //cause = 0: enemy has exploded on player
         //cause = 1: enemy has ben killed by Player

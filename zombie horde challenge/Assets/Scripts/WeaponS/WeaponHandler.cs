@@ -22,7 +22,7 @@ public class WeaponHandler : MonoBehaviour
         EquipWeapon(m_WeaponTypes[1]);
     }
 
-    public void EquipWeapon(WeaponSO weaponSO)
+    public void EquipWeapon(WeaponSO weaponSO) // destroy current weapon and ssign new one
     {
         if(m_CurrentWeapon != null)
         {

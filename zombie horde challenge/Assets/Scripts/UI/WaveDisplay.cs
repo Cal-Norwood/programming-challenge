@@ -23,7 +23,7 @@ public class WaveDisplay : MonoBehaviour
         m_ESS.UpdateEnemiesLeft -= UpdateEnemiesRemain;
     }
 
-    private void UpdateCurrentWave(int currentWave)
+    private void UpdateCurrentWave(int currentWave) // update wave displays
     {
         switch(currentWave)
         {

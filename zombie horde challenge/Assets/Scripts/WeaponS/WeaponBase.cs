@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public abstract class WeaponBase : MonoBehaviour
+public abstract class WeaponBase : MonoBehaviour // weapon base class to initialize data with basic functions
 {
     protected WeaponSO m_WeaponData;
 

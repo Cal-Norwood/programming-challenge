@@ -26,7 +26,7 @@ public class PlayerLevel : MonoBehaviour
         }
     }
 
-    private void LevelUp()
+    private void LevelUp() // pause th game and allow the player to choose their upgrade
     {
         m_LevelDisplay.SetActive(true);
         Time.timeScale = 0;

@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
-public class Shotgun : WeaponBase
+public class Shotgun : WeaponBase // overrided weapon base for the shotgun weapon to move according to mouse and fire
 {
     Vector3 scale = Vector3.one;
     [SerializeField] private GameObject m_Bullet;

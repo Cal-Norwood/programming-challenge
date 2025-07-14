@@ -20,7 +20,7 @@ public class EnemyHandler : MonoBehaviour
         m_Player = GameObject.Find("Player");
     }
 
-    public virtual void Initialize(EnemyStatsSO stats)
+    public virtual void Initialize(EnemyStatsSO stats) //assign enemy stats via function to allow modularisation
     {
         m_EnemyData = stats;
 
@@ -44,7 +44,7 @@ public class EnemyHandler : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
+    void FixedUpdate() // chase player
     {
         if (m_Player == null) return;
 
@@ -52,7 +52,7 @@ public class EnemyHandler : MonoBehaviour
         transform.position += direction * m_EnemyData.speed * Time.deltaTime;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision) // deal damage to the player
     {
         if (collision.collider.TryGetComponent(out PlayerHealth PH))
         {

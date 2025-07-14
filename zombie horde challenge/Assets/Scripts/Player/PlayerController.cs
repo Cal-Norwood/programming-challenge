@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
         m_WH = GetComponent<WeaponHandler>();
     }
 
-    private void OnEnable()
+    private void OnEnable() //bind inputs to functions
     {
         IA.Enable();
         IA.Player.Move.performed += Handle_Move;

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class Pistol : WeaponBase
+public class Pistol : WeaponBase // overrided weapon base for the pistol weapon to move according to mouse and fire
 {
     Vector3 scale = Vector3.one;
     [SerializeField] private GameObject m_Bullet;

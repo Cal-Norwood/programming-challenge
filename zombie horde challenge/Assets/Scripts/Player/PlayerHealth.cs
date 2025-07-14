@@ -12,7 +12,7 @@ public class PlayerHealth : MonoBehaviour
         m_CurrentHealth = m_MaxHealth;
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(float damage) // deal damage to player and check for death status
     {
         m_CurrentHealth -= damage;
         m_ProgressBar.fillAmount = m_CurrentHealth / m_MaxHealth;
